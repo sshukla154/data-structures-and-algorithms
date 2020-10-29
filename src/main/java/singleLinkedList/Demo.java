@@ -50,7 +50,7 @@ public class Demo {
 				List.countNodes();
 				break;
 			case 3: 
-				System.out.print("Enter the element to be serached : ");
+				System.out.print("Enter the element to be searched : ");
 				data = scan.nextInt();
 				List.search(data);
 				break;
@@ -64,12 +64,41 @@ public class Demo {
 				data = scan.nextInt();
 				List.insertAtEnd(data);
 				break;
-			case 6: 
+			case 6:
 				System.out.print("Enter the element to be inserted : ");
 				data = scan.nextInt();
-				List.insertInBeginning(data);
+				System.out.print("Enter the element after which to be inserted : ");
+				x = scan.nextInt();
+				List.insertAfter(data, x);
 				break;
-			
+			case 7:
+				System.out.print("Enter the element to be inserted : ");
+				data = scan.nextInt();
+				System.out.print("Enter the element before which to be inserted : ");
+				x = scan.nextInt();
+				List.insertBefore(data, x);
+				break;
+			case 8:
+				System.out.print("Enter the element to be inserted : ");
+				data = scan.nextInt();
+				System.out.print("Enter the position at which node is to be inserted : ");
+				k = scan.nextInt();
+				List.insertAtPosition(data, k);
+				break;
+			case 9:
+				List.deleteFirstNode();
+				break;
+			case 10:
+				List.deleteLastNode();
+				break;
+			case 11:
+				System.out.print("Enter the element to be deleted : ");
+				x = scan.nextInt();
+				List.deleteNode(x);
+				break;
+			case 12:
+				List.reverseList();
+				break;
 			}
 		}
 

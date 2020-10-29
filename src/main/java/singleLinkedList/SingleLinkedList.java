@@ -13,6 +13,7 @@ public class SingleLinkedList {
 	public void createList() {
 
 		int i, n, data;
+		@SuppressWarnings("resource")
 		Scanner scan = new Scanner(System.in);
 		System.out.print("Enter the number of nodes : ");
 		n = scan.nextInt();
@@ -22,7 +23,7 @@ public class SingleLinkedList {
 		}
 
 		for (i = 1; i <= n; i++) {
-			System.out.println("Enter the element to be inserted : ");
+			System.out.print("Enter the element to be inserted : ");
 			data = scan.nextInt();
 			insertAtEnd(data);
 		}
@@ -36,10 +37,10 @@ public class SingleLinkedList {
 			start = temp;
 			return;
 		}
-		
+
 		p = start;
-		while(p.link!=null) {
-			p=p.link;
+		while (p.link != null) {
+			p = p.link;
 		}
 		p.link = temp;
 
@@ -99,7 +100,155 @@ public class SingleLinkedList {
 		Node temp = new Node(data);
 		temp.link = start;
 		start = temp;
+	}
 
+	public void insertAfter(int data, int x) {
+		Node p = start;
+		while (p != null) {
+			if (p.info == x) {
+				break;
+			}
+			p = p.link;
+
+			if (p == null) {
+				System.out.println(x + " is not present.");
+			} else {
+				Node temp = new Node(data);
+				temp.link = p.link;
+				p.link = temp;
+			}
+		}
+	}
+
+	public void insertBefore(int data, int x) {
+		Node temp;
+
+		/* If list is empty */
+		if (start == null) {
+			System.out.println("List is empty.");
+		}
+
+		/* x is in first node, new node is to be initiated before first node */
+		if (x == start.info) {
+			temp = new Node(data);
+			temp.link = start;
+			start = temp;
+			return;
+		}
+
+		/* Find reference to predecessor of the node containing x */
+		Node p = start;
+		while (p.link != null) {
+			if (p.link.info == x) {
+				break;
+			}
+			p = p.link;
+		}
+
+		if (p.link == null) {
+			System.out.println(x + " not present in the list.");
+		} else {
+			temp = new Node(data);
+			temp.link = p.link;
+			p.link = temp;
+		}
+	}
+
+	public void insertAtPosition(int data, int k) {
+
+		Node temp;
+		int i;
+
+		if (k == 1) {
+			temp = new Node(data);
+			temp.link = start;
+			start = temp;
+			return;
+
+		}
+
+		Node p = start;
+		for (i = 1; i < k - 1 && p != null; i++) {/* Find reference to (k-1) */
+			p = p.link;
+		}
+
+		if (p == null) {
+			System.out.println("You can only insert upto " + k + "th position");
+		} else {
+			temp = new Node(data);
+			temp.link = p.link;
+			p.link = temp;
+		}
+
+	}
+
+	public void deleteFirstNode() {
+		if (start == null) {
+			return;
+		}
+		start = start.link;
+	}
+
+	public void deleteLastNode() {
+		if (start == null) {
+			return;
+		}
+
+		if (start.link == null) {
+			start = null;
+		}
+
+		Node p = start;
+		/* After this while loop is terminated, pointer will be at second last index */
+		while (p.link.link != null) {
+			p = p.link;
+		}
+		p.link = null;
+	}
+
+	public void deleteNode(int x) {
+		
+		/*If list is empty*/
+		if (start == null) {
+			System.out.println("List is empty.");
+			return;
+		}
+
+		/*If list has only one node*/
+		if(start.info==x) {
+			start=start.link;
+			return;
+		}
+
+		/*If list has more than one node, in between or at the end*/
+		Node p = start;
+		while(p.link!=null) {
+			if(p.link.info==x) {
+				break;
+			}
+			p=p.link;
+		}
+		
+		if(p.link==null) {
+			System.out.println("Element " + x + " not in the list.");
+		} else {
+			p.link = p.link.link;
+		}
+		
+	}
+
+	public void reverseList() {
+		
+		Node previous, p, next;
+		previous = null;
+		p = start;
+		while(p!=null) {
+			next=p.link;
+			p.link=previous;
+			previous=p;
+			p=next;
+		}
+		start = previous;
 	}
 
 }
