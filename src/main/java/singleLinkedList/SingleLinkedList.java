@@ -207,48 +207,230 @@ public class SingleLinkedList {
 	}
 
 	public void deleteNode(int x) {
-		
-		/*If list is empty*/
+
+		/* If list is empty */
 		if (start == null) {
 			System.out.println("List is empty.");
 			return;
 		}
 
-		/*If list has only one node*/
-		if(start.info==x) {
-			start=start.link;
+		/* If list has only one node */
+		if (start.info == x) {
+			start = start.link;
 			return;
 		}
 
-		/*If list has more than one node, in between or at the end*/
+		/* If list has more than one node, in between or at the end */
 		Node p = start;
-		while(p.link!=null) {
-			if(p.link.info==x) {
+		while (p.link != null) {
+			if (p.link.info == x) {
 				break;
 			}
-			p=p.link;
+			p = p.link;
 		}
-		
-		if(p.link==null) {
+
+		if (p.link == null) {
 			System.out.println("Element " + x + " not in the list.");
 		} else {
 			p.link = p.link.link;
 		}
-		
+
 	}
 
 	public void reverseList() {
-		
+
 		Node previous, p, next;
 		previous = null;
 		p = start;
-		while(p!=null) {
-			next=p.link;
-			p.link=previous;
-			previous=p;
-			p=next;
+		while (p != null) {
+			next = p.link;
+			p.link = previous;
+			previous = p;
+			p = next;
 		}
 		start = previous;
+	}
+
+	public void BubbleSortExchangingData() {
+
+		Node p, q, end;
+
+		/* for loop: end to p */
+		for (end = null; end != start.link; end = p) {
+			for (p = start; p.link != end; p = p.link) {
+				q = p.link;
+				if (p.info > q.info) {
+					int temp = p.info;
+					p.info = q.info;
+					q.info = temp;
+				}
+			}
+
+		}
+
+	}
+
+	public void BubbleSortExchangingLink() {
+		/* reference r is always behind reference p */
+		Node p, q, r, temp, end;
+
+		for (end = null; end != start.link; end = p) {
+
+			for (r = p = start; p.link != end; r = p, p = p.link) {
+				q = p.link;
+				/*
+				 * If p.info is grater then we wont exchange p.info and q.info instead we will
+				 * change the positions of Node referred by p&q. For this only we need extra
+				 * reference r
+				 */
+				if (p.info > q.info) {
+					p.link = q.link;
+					q.link = p;
+					if (p != start) {
+						r.link = q;
+					} else {
+						start = q;
+					}
+					/* Exchange p and q for next pass */
+					temp = p;
+					p = q;
+					q = temp;
+				}
+			}
+
+		}
+
+	}
+
+	public SingleLinkedList mergeByCreatingNewList(SingleLinkedList list) {
+		SingleLinkedList mergeList = new SingleLinkedList();
+		mergeList.start = mergeByCreatingNewList(start, list.start);
+		return mergeList;
+	}
+
+	private Node mergeByCreatingNewList(Node p1, Node p2) {
+
+		/* First node of merged list */
+		Node startM;
+
+		if (p1.info <= p2.info) {
+			startM = new Node(p1.info);
+			p1 = p1.link;
+		} else {
+			startM = new Node(p2.info);
+			p2 = p2.link;
+		}
+
+		/* Newly inserted node of merged list */
+		Node pM = startM;
+
+		/* While loop will terminate either p1 or p2 will be null */
+		while (p1 != null && p2 != null) {
+			if (p1.info <= p2.info) {
+				pM.link = new Node(p1.info);
+				p1 = p1.link;
+			} else {
+				pM.link = new Node(p2.info);
+				p2 = p2.link;
+			}
+			pM = pM.link;
+		}
+
+		/* If second list has finished and elements left in first list */
+		while (p1 != null) {
+			pM.link = new Node(p1.info);
+			p1 = p1.link;
+			pM = pM.link;
+		}
+
+		/* If first list has finished and elements left in second list */
+		while (p2 != null) {
+			pM.link = new Node(p2.info);
+			p2 = p2.link;
+			pM = pM.link;
+		}
+
+		return startM;
+	}
+
+	public SingleLinkedList mergeByRearrangingList(SingleLinkedList list) {
+		SingleLinkedList mergeList = new SingleLinkedList();
+		mergeList.start = mergeByRearrangingList(start, list.start);
+		return mergeList;
+	}
+
+	private Node mergeByRearrangingList(Node p1, Node p2) {
+
+		/* First node of merged list */
+		Node startM;
+
+		if (p1.info <= p2.info) {
+			startM = p1;
+			p1 = p1.link;
+		} else {
+			startM = p2;
+			p2 = p2.link;
+		}
+
+		/* Newly inserted node of merged list */
+		Node pM = startM;
+
+		/* While loop will terminate either p1 or p2 will be null */
+		while (p1 != null && p2 != null) {
+			if (p1.info <= p2.info) {
+				pM.link = p1;
+				pM = pM.link;
+				p1 = p1.link;
+			} else {
+				pM.link = p2;
+				pM = pM.link;
+				p2 = p2.link;
+			}
+		}
+
+		/* If second list has finished and elements left in first list */
+		if (p1 == null) {
+			pM.link = p2;
+		}
+
+		/* If first list has finished and elements left in second list */
+		if (p2 == null) {
+			pM.link = p1;
+		}
+
+		return startM;
+	}
+
+	public void mergeSort() {
+		start = mergeSortRecursive(start);
+	}
+
+	private Node mergeSortRecursive(Node listStart) {
+
+		/* If list is empty or has one element */
+		if (listStart == null || listStart.link == null) {
+			return listStart;
+		}
+
+		/* If list has more than one element */
+		Node start1 = listStart;
+		Node start2 = divideList(listStart);
+		start1 = mergeSortRecursive(start1);
+		start2 = mergeSortRecursive(start2);
+		Node startM = mergeByRearrangingList(start1, start2);
+		return startM;
+	}
+
+	private Node divideList(Node p) {
+		Node q = p.link.link;
+		while (q != null && q.link != null) {
+			p = p.link;
+			q = q.link.link;
+		}
+
+		Node start2 = p.link;
+		p.link = null;
+		return start2;
 	}
 
 }

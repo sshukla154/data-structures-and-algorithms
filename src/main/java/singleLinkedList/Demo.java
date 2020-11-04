@@ -99,6 +99,15 @@ public class Demo {
 			case 12:
 				List.reverseList();
 				break;
+			case 13:
+				List.BubbleSortExchangingData();
+				break;
+			case 14:
+				List.BubbleSortExchangingLink();
+				break;
+			case 15:
+				List.mergeSort();
+				break;
 			}
 		}
 
