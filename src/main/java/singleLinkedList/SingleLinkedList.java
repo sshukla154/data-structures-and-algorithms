@@ -433,4 +433,92 @@ public class SingleLinkedList {
 		return start2;
 	}
 
+	public boolean hasCycle() {
+		if (findCycle() == null) {
+			return false;
+		} else {
+			return true;
+		}
+
+	}
+
+	private Node findCycle() {
+		if (start == null || start.link == null) {
+			return null;
+		}
+
+		Node slowReference = start;
+		Node fastReference = start;
+		/* If the list has no cycle then in while(condition), condition will be false */
+		while (fastReference != null && slowReference != null) {
+			/* Increasing one node at a time */
+			slowReference = slowReference.link;
+			/* Increasing two node at a time */
+			fastReference = fastReference.link.link;
+			/* If both references then cyclic is formed */
+			if (slowReference == fastReference) {
+				return slowReference;
+			}
+		}
+
+		return null;
+	}
+
+	public void removeCycle() {
+		Node c = findCycle();
+		if (c == null) {
+			return;
+		}
+		System.out.println("Node at which cycle is detected is : " + c.info);
+
+		Node p = c, q = c;
+		int cycleListLength = 0;
+
+		do {
+			cycleListLength++;
+			q = q.link;
+		} while (p != q);
+
+		System.out.println("Length of cycle is : " + cycleListLength);
+
+		int remainingListLength = 0;
+		p = start;
+		while (p != q) {
+			remainingListLength++;
+			p = p.link;
+			q = q.link;
+		}
+		System.out.println("No of nodes not included in cycle : " + remainingListLength);
+
+		int totalListlength = cycleListLength + remainingListLength;
+		System.out.println("Length of cycle is : " + cycleListLength);
+		p = start;
+		for (int i = 1; i <= totalListlength - 1; i++) {
+			p = p.link;
+		}
+		p.link = null;
+	}
+
+	public void insertCycle(int x) {
+		if (start == null) {
+			return;
+		}
+
+		Node p = start, px = null, prev = null;
+
+		while (p != null) {
+			if (p.info == 0) {
+				px = p;
+			}
+			prev = p;
+			p = p.link;
+		}
+		
+		if(px!=null) {
+			prev.link=px;
+		} else {
+			System.out.println(x + " is not present in the list");
+		}
+	}
+
 }

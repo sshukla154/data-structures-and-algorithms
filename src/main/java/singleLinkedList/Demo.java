@@ -5,16 +5,15 @@ import java.util.Scanner;
 public class Demo {
 
 	public static void main(String[] args) {
-		
+
 		int choice, data, k, x;
-		
+
 		Scanner scan = new Scanner(System.in);
-		
+
 		SingleLinkedList List = new SingleLinkedList();
-		
+
 		List.createList();
-		while(true) {
-			System.out.println();
+		while (true) {
 			System.out.println("1. Display List");
 			System.out.println("2. Count The No of Nodes In List");
 			System.out.println("3. Search For An Element In List");
@@ -34,32 +33,32 @@ public class Demo {
 			System.out.println("17. Detect Cycle");
 			System.out.println("18. Remove List");
 			System.out.println("19. Quit");
-			
+
 			System.out.print("Enter your choice : ");
 			choice = scan.nextInt();
-			
-			if(choice==19) {
+
+			if (choice == 19) {
 				break;
 			}
-			
-			switch(choice) {
-			case 1: 
+
+			switch (choice) {
+			case 1:
 				List.displayList();
 				break;
-			case 2: 
+			case 2:
 				List.countNodes();
 				break;
-			case 3: 
+			case 3:
 				System.out.print("Enter the element to be searched : ");
 				data = scan.nextInt();
 				List.search(data);
 				break;
-			case 4: 
+			case 4:
 				System.out.print("Enter the element to be inserted in beginning : ");
 				data = scan.nextInt();
 				List.insertInBeginning(data);
 				break;
-			case 5: 
+			case 5:
 				System.out.print("Enter the element to be inserted at the end : ");
 				data = scan.nextInt();
 				List.insertAtEnd(data);
@@ -108,9 +107,26 @@ public class Demo {
 			case 15:
 				List.mergeSort();
 				break;
+			case 16:
+				List.hasCycle();
+				break;
+			case 17:
+				System.out.print("Enter the element at which the cycle has to be inserted : ");
+				x = scan.nextInt();
+				List.insertCycle(x);
+				break;
+			case 18:
+				List.hasCycle();
+				break;
+			case 19:
+				break;
+			default:
+				System.out.println("Incorrect choice !!!");
 			}
+			System.out.println();
 		}
-
+		scan.close();
+		System.out.println("Exiting");
 	}
 
 }
