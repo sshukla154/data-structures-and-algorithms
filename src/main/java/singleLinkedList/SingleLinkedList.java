@@ -10,42 +10,6 @@ public class SingleLinkedList {
 		start = null;
 	}
 
-	public void createList() {
-
-		int i, n, data;
-		@SuppressWarnings("resource")
-		Scanner scan = new Scanner(System.in);
-		System.out.print("Enter the number of nodes : ");
-		n = scan.nextInt();
-
-		if (n == 0) {
-			return;
-		}
-
-		for (i = 1; i <= n; i++) {
-			System.out.print("Enter the element to be inserted : ");
-			data = scan.nextInt();
-			insertAtEnd(data);
-		}
-
-	}
-
-	public void insertAtEnd(int data) {
-		Node p;
-		Node temp = new Node(data);
-		if (start == null) {
-			start = temp;
-			return;
-		}
-
-		p = start;
-		while (p.link != null) {
-			p = p.link;
-		}
-		p.link = temp;
-
-	}
-
 	public void displayList() {
 		Node p;
 		if (start == null) {
@@ -100,6 +64,42 @@ public class SingleLinkedList {
 		Node temp = new Node(data);
 		temp.link = start;
 		start = temp;
+	}
+
+	public void insertAtEnd(int data) {
+		Node p;
+		Node temp = new Node(data);
+		if (start == null) {
+			start = temp;
+			return;
+		}
+
+		p = start;
+		while (p.link != null) {
+			p = p.link;
+		}
+		p.link = temp;
+
+	}
+
+	public void createList() {
+
+		int i, n, data;
+		@SuppressWarnings("resource")
+		Scanner scan = new Scanner(System.in);
+		System.out.print("Enter the number of nodes : ");
+		n = scan.nextInt();
+
+		if (n == 0) {
+			return;
+		}
+
+		for (i = 1; i <= n; i++) {
+			System.out.print("Enter the element to be inserted : ");
+			data = scan.nextInt();
+			insertAtEnd(data);
+		}
+
 	}
 
 	public void insertAfter(int data, int x) {
@@ -513,12 +513,31 @@ public class SingleLinkedList {
 			prev = p;
 			p = p.link;
 		}
-		
-		if(px!=null) {
-			prev.link=px;
+
+		if (px != null) {
+			prev.link = px;
 		} else {
 			System.out.println(x + " is not present in the list");
 		}
+	}
+
+	public void concatenate(SingleLinkedList list) {
+		/* If first list is empty */
+		if (start == null) {
+			start = list.start;
+			return;
+		}
+
+		/* if input list (the one in parameter) is empty */
+		if (list.start == null) {
+			return;
+		}
+
+		Node p = start;
+		while (p.link != null) {
+			p = p.link;
+		}
+		p.link = list.start;
 	}
 
 }

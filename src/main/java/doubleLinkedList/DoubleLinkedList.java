@@ -189,21 +189,21 @@ public class DoubleLinkedList {
 		}
 
 		Node p = start.next;
-		while(p.next!=null) {
-			if(p.info==x) {
+		while (p.next != null) {
+			if (p.info == x) {
 				break;
 			}
-			p=p.next;
+			p = p.next;
 		}
-		
-		/*Node to be deleted is in between*/
-		if(p.next!=null) {
-			p.prev.next=p.next;
-			p.next.prev=p.prev;
+
+		/* Node to be deleted is in between */
+		if (p.next != null) {
+			p.prev.next = p.next;
+			p.next.prev = p.prev;
 		} else {
-			/*p refers to last node*/
-			if(p.info==x) {
-				p.prev.next=null;
+			/* p refers to last node */
+			if (p.info == x) {
+				p.prev.next = null;
 			} else {
 				System.out.println(x + " is not found");
 			}
@@ -211,6 +211,23 @@ public class DoubleLinkedList {
 	}
 
 	public void reverseList() {
+
+		if (start == null) {
+			System.out.println("List is empty.");
+			return;
+		}
+
+		Node p1 = start;
+		Node p2 = p1.next;
+		p1.next = null;
+		p1.prev = p2;
+		while (p2 != null) {
+			p2.prev = p2.next;
+			p2.next = p1;
+			p1 = p2;
+			p2 = p2.prev;
+		}
+		start = p1;
 
 	}
 
