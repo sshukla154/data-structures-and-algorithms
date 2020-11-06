@@ -1,6 +1,7 @@
 package queueArray;
 
 import java.util.EmptyStackException;
+import java.util.NoSuchElementException;
 
 public class QueueArray {
 
@@ -64,8 +65,8 @@ public class QueueArray {
 
 		int x;
 		if (isEmpty()) {
-			System.out.println("Stack Underflow");
-			throw new EmptyStackException();
+			System.out.println("Queue Underflow");
+			throw new NoSuchElementException();
 		}
 
 		/* Element at index front is taken out */
