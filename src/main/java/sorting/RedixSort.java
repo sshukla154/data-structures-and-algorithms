@@ -103,7 +103,6 @@ public class RedixSort {
 
 		Node temp, p;
 		int i, n, data;
-		int[] numberArray = new int[20];
 		Scanner scan = new Scanner(System.in);
 		System.out.print("Enter the number of elements in the list : ");
 		n = scan.nextInt();

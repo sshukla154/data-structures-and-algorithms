@@ -44,6 +44,7 @@ public class SortedLinkedList {
 
 	}
 
+	@SuppressWarnings("resource")
 	public void createList() {
 
 		int i, n, data;
@@ -61,6 +62,7 @@ public class SortedLinkedList {
 			data = scan.nextInt();
 			insertInOrder(data);
 		}
+		scan.close();
 
 	}
 

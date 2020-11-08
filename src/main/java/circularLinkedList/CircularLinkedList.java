@@ -3,7 +3,6 @@ package circularLinkedList;
 import java.util.Scanner;
 
 import singleLinkedList.Node;
-import singleLinkedList.SingleLinkedList;
 
 public class CircularLinkedList {
 
@@ -52,6 +51,7 @@ public class CircularLinkedList {
 		last = temp;
 	}
 
+	@SuppressWarnings("resource")
 	public void createList() {
 		int i, n, data;
 		Scanner scan = new Scanner(System.in);
@@ -73,6 +73,7 @@ public class CircularLinkedList {
 			data = scan.nextInt();
 			insertAtEnd(data);
 		}
+		scan.close();
 	}
 
 	public void insertAfter(int data, int x) {

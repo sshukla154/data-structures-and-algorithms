@@ -50,6 +50,7 @@ public class HeaderList {
 			data = scan.nextInt();
 			insertAtEnd(data);
 		}
+		scan.close();
 
 	}
 

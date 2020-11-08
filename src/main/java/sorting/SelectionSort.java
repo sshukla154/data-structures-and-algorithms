@@ -10,29 +10,21 @@ public class SelectionSort {
 
 	public static void _sort(int[] a, int n) {
 
-		// Iterate over unsorted array
-		int minIndex = 0;
 		for (int i = 0; i < n; i++) {
 			for (int j = i + 1; j < n; j++) {
 				if (a[i] > a[j]) {
 
 				}
-
 			}
-
 		}
-
 	}
 
 	public static void sort(int[] a, int n) {
 
 		/*
-			Pass-1: i=0, j=1-5
-			Pass-2: i=1, j=2-5
-			Pass-3: i=2, j=3-5
-			Pass-4: i=3, j=4-5
-			Pass-5: i=4, j=5
-		*/
+		 * Pass-1: i=0, j=1-5 Pass-2: i=1, j=2-5 Pass-3: i=2, j=3-5 Pass-4: i=3, j=4-5
+		 * Pass-5: i=4, j=5
+		 */
 		int minIndex, temp, i, j;
 		for (i = 0; i < n - 1; i++) {
 			minIndex = i;
@@ -43,8 +35,8 @@ public class SelectionSort {
 				}
 			}
 			// Swapping i-th index value with minIndex Value
-			if(i!=minIndex) {
-				temp=a[i];
+			if (i != minIndex) {
+				temp = a[i];
 				a[i] = a[minIndex];
 				a[minIndex] = temp;
 			}

@@ -4,7 +4,6 @@ import javax.swing.tree.TreeNode;
 
 public class BinarySearchTree {
 	
-	private static int x;
 	private TreeNode root;
 	
 	public BinarySearchTree() {
@@ -17,7 +16,6 @@ public class BinarySearchTree {
 	}
 
 	public void inorder(int[] a) {
-		x=0;
 		inorder(root, a);
 	}
 

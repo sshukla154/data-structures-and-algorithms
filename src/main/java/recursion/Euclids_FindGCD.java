@@ -17,7 +17,7 @@ public class Euclids_FindGCD {
 		b = scanner.nextInt();
 
 		System.out.println("GCD of " + a + " and " + b + " is :" + findGCD(a, b));
-
+		scanner.close();
 	}
 
 	private static int findGCD(int a, int b) {

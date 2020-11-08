@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Demo {
 
 	public static void main(String[] args) {
-		int choice, data, k, x;
+		int choice, data, x;
 
 		Scanner scan = new Scanner(System.in);
 

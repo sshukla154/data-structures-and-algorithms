@@ -8,7 +8,7 @@ public class SortedLinkedList {
 	}
 
 	public void insertInOrder(int data) {
-		Node p, temp;
+		Node temp;
 
 		temp = new Node(data);
 

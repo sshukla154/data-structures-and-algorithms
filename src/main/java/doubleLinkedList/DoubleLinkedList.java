@@ -10,6 +10,7 @@ public class DoubleLinkedList {
 		start = null;
 	}
 
+	@SuppressWarnings("resource")
 	public void createList() {
 
 		int i, n, data;
@@ -31,6 +32,7 @@ public class DoubleLinkedList {
 			data = scan.nextInt();
 			insertAtEnd(data);
 		}
+		scan.close();
 
 	}
 

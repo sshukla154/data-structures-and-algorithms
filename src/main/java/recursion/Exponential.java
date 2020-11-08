@@ -22,6 +22,7 @@ public class Exponential {
 		System.out.print("Enter the exponent : ");
 		int n = scanner.nextInt();
 		System.out.println(x + "^" + n + " = " + power(x, n));
+		scanner.close();
 	}
 
 }
