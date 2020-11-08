@@ -4,8 +4,6 @@ import java.util.EmptyStackException;
 
 public class StackSingleLinkedList {
 
-	private int[] stackList;
-
 	/* Will always refer to the first node of the list */
 	private Node top;
 
