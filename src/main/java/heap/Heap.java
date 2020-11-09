@@ -88,7 +88,7 @@ public class Heap {
 
 	public void display() {
 
-		int i;
+//		int i;
 		if (n == 0) {
 			System.out.println("Heap is empty");
 		}
